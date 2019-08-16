@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 本应用的名称，唯一 -->
+    <dubbo:application name="demo-provider"/>
+
+    <!-- 注册到zookeeper -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!-- 暴露请求的端口，注意外部容器需要指定server为servlet，外部容器可以使用Tomcat。
+        <dubbo:protocol contextpath> 可以理解为请求路径前缀，如xxx表示localhost:9001/xxx/ -->
+    <dubbo:protocol name="rest" port="9001" threads="500" server="servlet" accepts="500" contextpath=""/>
+
+    <!-- 开启注解扫描，解析包路径下的注解，在这里是@Service，可以直接将对应的类作为服务发布出去。
+        也可以选择在本文件配置bean，不开启注解扫描，等价于下面的两个配置 -->
+    <dubbo:annotation package="org.xujiale.dubbodemo.service"/>
+
+    <!--<bean id="systemService" class="org.xujiale.dubbodemo.service.SystemServiceImpl"/>-->
+    <!--<dubbo:service interface="org.xujiale.dubbodemo.api.SystemService" ref="systemService"/>-->
+
+</beans>
