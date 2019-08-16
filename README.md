@@ -5,9 +5,11 @@
 配置文件：src/main/resources/provider-context.xml，项目 build 成功之后将会出现target文件夹。
 
 IDEA目录结构如下（默认是json）:
+
 ![](./img/01.PNG)
 
 Tomcat配置如下：
+
 ![](./img/02.PNG)
 
 运行成功可以本地访问：http://localhost:9001/system/serverIpList ，（也可以添加.json或.xml后缀，显式指明需要请求的数据模式），浏览器运行结果如下：
